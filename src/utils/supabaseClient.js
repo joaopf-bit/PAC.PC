@@ -1,16 +1,6 @@
 // src/utils/supabaseClient.js
-// ─────────────────────────────────────────────────────────────
-// Cliente Supabase para uso em Client Components (navegador).
-// Usa @supabase/ssr para gerenciar cookies corretamente no Next.js 14.
-// ─────────────────────────────────────────────────────────────
 import { createBrowserClient } from "@supabase/ssr";
 
-/**
- * Cria e retorna um cliente Supabase para o lado do cliente (browser).
- * Use este cliente em componentes com "use client".
- *
- * @returns {import('@supabase/supabase-js').SupabaseClient}
- */
 export function createClient() {
   return createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -18,7 +8,11 @@ export function createClient() {
   );
 }
 
-// Instância singleton para uso direto nos componentes
-const supabase = createClient();
+// Inicializa de forma segura apenas quando estiver rodando no navegador (client-side)
+let supabaseInstance;
 
-export default supabase;
+if (typeof window !== "undefined") {
+  supabaseInstance = createClient();
+}
+
+export default supabaseInstance;

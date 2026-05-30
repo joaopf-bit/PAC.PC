@@ -1,17 +1,8 @@
 // src/utils/supabaseServer.js
-// ─────────────────────────────────────────────────────────────
-// Cliente Supabase para uso em Server Components e Route Handlers.
-// Lê e escreve cookies via next/headers (Next.js 14 App Router).
-// ─────────────────────────────────────────────────────────────
 import { createServerClient } from "@supabase/ssr";
+import { createClient as createClientAdmin } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 
-/**
- * Cria um cliente Supabase para Server Components.
- * Chame dentro de funções async (Server Components, Route Handlers, Server Actions).
- *
- * @returns {import('@supabase/supabase-js').SupabaseClient}
- */
 export function createServerSupabaseClient() {
   const cookieStore = cookies();
 
@@ -27,14 +18,14 @@ export function createServerSupabaseClient() {
           try {
             cookieStore.set({ name, value, ...options });
           } catch {
-            // set() é ignorado em Server Components (só funciona em Route Handlers/Actions)
+            // Ignorado em Server Components tradicionais
           }
         },
         remove(name, options) {
           try {
             cookieStore.set({ name, value: "", ...options });
           } catch {
-            // idem
+            // Ignorado em Server Components tradicionais
           }
         },
       },
@@ -42,15 +33,9 @@ export function createServerSupabaseClient() {
   );
 }
 
-/**
- * Cliente com service_role — NUNCA exponha no frontend.
- * Use apenas em Route Handlers que precisam bypassar RLS.
- *
- * @returns {import('@supabase/supabase-js').SupabaseClient}
- */
+// Removido o 'require()' dinâmico para garantir compatibilidade com o build da Vercel
 export function createAdminSupabaseClient() {
-  const { createClient } = require("@supabase/supabase-js");
-  return createClient(
+  return createClientAdmin(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.SUPABASE_SERVICE_ROLE_KEY,
     { auth: { autoRefreshToken: false, persistSession: false } }
