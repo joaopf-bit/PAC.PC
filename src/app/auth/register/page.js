@@ -9,7 +9,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import supabase from '../../../utils/supabaseClient';
+import supabase from '../../utils/supabaseClient';
 import { Eye, EyeOff, Loader2, AlertCircle, CheckCircle2 } from "lucide-react";
 
 // Regras de força de senha

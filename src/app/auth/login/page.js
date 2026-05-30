@@ -10,7 +10,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import supabase from '../../../utils/supabaseClient';
+import supabase from '../../utils/supabaseClient';
 import { Eye, EyeOff, Loader2, AlertCircle } from "lucide-react";
 
 export default function LoginPage() {
