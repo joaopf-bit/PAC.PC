@@ -13,11 +13,11 @@
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.43.4",
     "lucide-react": "^0.378.0",
-    "next": "14.2.3",
+    "next": "14.2.23",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "next": "14.2.3"
+    "next": "14.2.23"
   }
 }
