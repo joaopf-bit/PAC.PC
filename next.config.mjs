@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  experimental: {
-    workerThreads: false,
-    cpus: 1
-  }
+  // Sem configurações extras para não confundir o compilador
 };
 
 export default nextConfig;
