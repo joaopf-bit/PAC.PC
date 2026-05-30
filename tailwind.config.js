@@ -1,3 +1,4 @@
+// tailwind.config.js — versão atualizada com tokens do design system do Stitch
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -7,36 +8,79 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // ── Paleta Material You do design system do Stitch ──────
       colors: {
-        // Paleta principal do PAC
-        brand: {
-          50:  "#eef2ff",
-          100: "#e0e7ff",
-          200: "#c7d2fe",
-          400: "#818cf8",
-          500: "#6366f1",  // cor primária
-          600: "#4f46e5",
-          700: "#4338ca",
-          800: "#3730a3",
-          900: "#312e81",
-        },
-        surface: {
-          DEFAULT: "#0f1117",  // fundo principal (dark)
-          card:    "#1a1d27",  // cards
-          hover:   "#1f2235",  // hover state
-          border:  "#2a2d3e",  // bordas
-        },
-        // Status das submissões
+        // Primárias
+        "primary":               "#003ec7",
+        "on-primary":            "#ffffff",
+        "primary-container":     "#0052ff",
+        "on-primary-container":  "#dfe3ff",
+        "inverse-primary":       "#b7c4ff",
+        "primary-fixed":         "#dde1ff",
+        "primary-fixed-dim":     "#b7c4ff",
+        "on-primary-fixed":      "#001452",
+        "on-primary-fixed-variant": "#0038b6",
+        "surface-tint":          "#004ced",
+
+        // Secundárias
+        "secondary":             "#505f76",
+        "on-secondary":          "#ffffff",
+        "secondary-container":   "#d0e1fb",
+        "on-secondary-container":"#54647a",
+        "secondary-fixed":       "#d3e4fe",
+        "secondary-fixed-dim":   "#b7c8e1",
+        "on-secondary-fixed":    "#0b1c30",
+        "on-secondary-fixed-variant": "#38485d",
+
+        // Terciárias
+        "tertiary":              "#4b4e50",
+        "on-tertiary":           "#ffffff",
+        "tertiary-container":    "#636668",
+        "on-tertiary-container": "#e2e4e6",
+        "tertiary-fixed":        "#e0e3e5",
+        "tertiary-fixed-dim":    "#c4c7c9",
+        "on-tertiary-fixed":     "#191c1e",
+        "on-tertiary-fixed-variant": "#444749",
+
+        // Superfícies
+        "background":            "#faf8ff",
+        "on-background":         "#131b2e",
+        "surface":               "#faf8ff",
+        "surface-dim":           "#d2d9f4",
+        "surface-bright":        "#faf8ff",
+        "surface-variant":       "#dae2fd",
+        "on-surface":            "#131b2e",
+        "on-surface-variant":    "#434656",
+        "surface-container-lowest":  "#ffffff",
+        "surface-container-low":     "#f2f3ff",
+        "surface-container":         "#eaedff",
+        "surface-container-high":    "#e2e7ff",
+        "surface-container-highest": "#dae2fd",
+        "inverse-surface":       "#283044",
+        "inverse-on-surface":    "#eef0ff",
+
+        // Bordas
+        "outline":               "#737688",
+        "outline-variant":       "#c3c5d9",
+
+        // Erro
+        "error":                 "#ba1a1a",
+        "on-error":              "#ffffff",
+        "error-container":       "#ffdad6",
+        "on-error-container":    "#93000a",
+
+        // Status de veredicto (extras PAC)
         verdict: {
-          accepted:    "#22c55e",
-          wrong:       "#ef4444",
-          tle:         "#f97316",
-          mle:         "#a855f7",
-          error:       "#ec4899",
-          pending:     "#64748b",
-          processing:  "#3b82f6",
+          accepted:   "#22c55e",
+          wrong:      "#ef4444",
+          tle:        "#f97316",
+          mle:        "#a855f7",
+          error:      "#ec4899",
+          pending:    "#64748b",
+          processing: "#3b82f6",
         },
-        // Dificuldade dos problemas
+
+        // Dificuldade dos problemas (extras PAC)
         difficulty: {
           easy:   "#22c55e",
           medium: "#f59e0b",
@@ -44,34 +88,54 @@ module.exports = {
           expert: "#a855f7",
         },
       },
+
+      // ── Tipografia ───────────────────────────────────────────
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
+        "sans":            ["Inter", "system-ui", "sans-serif"],
+        "inter":           ["Inter", "sans-serif"],
+        "grotesk":         ["Hanken Grotesk", "sans-serif"],
+        "mono":            ["JetBrains Mono", "monospace"],
+        "titulo-lg":       ["Hanken Grotesk"],
+        "titulo-md":       ["Hanken Grotesk"],
+        "titulo-sm":       ["Hanken Grotesk"],
+        "corpo-principal": ["Inter"],
+        "corpo-secundario":["Inter"],
+        "etiqueta-mono":   ["JetBrains Mono"],
       },
-      backgroundImage: {
-        "grid-pattern": "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+
+      fontSize: {
+        "titulo-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+        "titulo-md": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+        "titulo-sm": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+        "corpo-principal":  ["16px", { lineHeight: "24px", fontWeight: "400" }],
+        "corpo-secundario": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+        "etiqueta-mono":    ["12px", { lineHeight: "16px", fontWeight: "500" }],
       },
-      backgroundSize: {
-        "grid": "40px 40px",
+
+      // ── Border Radius (do Stitch) ────────────────────────────
+      borderRadius: {
+        DEFAULT: "0.125rem",
+        sm:      "0.125rem",
+        md:      "0.375rem",
+        lg:      "0.25rem",
+        xl:      "0.5rem",
+        "2xl":   "1rem",
+        full:    "9999px",
       },
-      animation: {
-        "fade-in":     "fadeIn 0.4s ease-out forwards",
-        "slide-up":    "slideUp 0.4s ease-out forwards",
-        "pulse-brand": "pulseBrand 2s ease-in-out infinite",
-      },
-      keyframes: {
-        fadeIn: {
-          from: { opacity: "0" },
-          to:   { opacity: "1" },
-        },
-        slideUp: {
-          from: { opacity: "0", transform: "translateY(12px)" },
-          to:   { opacity: "1", transform: "translateY(0)" },
-        },
-        pulseBrand: {
-          "0%, 100%": { boxShadow: "0 0 0 0 rgba(99, 102, 241, 0.4)" },
-          "50%":      { boxShadow: "0 0 0 8px rgba(99, 102, 241, 0)" },
-        },
+
+      // ── Espaçamento ──────────────────────────────────────────
+      spacing: {
+        base:             "4px",
+        xs:               "8px",
+        sm:               "16px",
+        md:               "24px",
+        lg:               "40px",
+        xl:               "64px",
+        gutter:           "24px",
+        margin_mobile:    "16px",
+        margin_desktop:   "32px",
+        sidebar_expanded: "280px",
+        sidebar_collapsed:"72px",
       },
     },
   },
